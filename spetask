@@ -1,1 +1,96 @@
+Special tasks.
+package SpecialTaskCollectionsPractise;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.NavigableMap;
+import java.util.Stack;
+import java.util.Vector;
+
+//Task No:1.
+//In a browser application, use Stack for back/forward navigation, LinkedList to maintain browsing sequence, and Vector for storing logs securely.
+public class BrowserTask1 {
+public static void main(String[] args) {
+	Stack<String> backStack = new Stack<>();
+    Stack<String> forwardStack = new Stack<>();
+
+    // LinkedList for browsing sequence
+    LinkedList<String> browsingHistory = new LinkedList<>();
+
+    // Vector for storing logs
+    Vector<String> logs = new Vector<>();
+
+    // Visit pages
+    visit("Google", backStack, forwardStack, browsingHistory, logs);
+    visit("YouTube", backStack, forwardStack, browsingHistory, logs);
+    visit("GitHub", backStack, forwardStack, browsingHistory, logs);
+ // Back
+    back(backStack, forwardStack, logs);
+
+    // Forward
+    forward(backStack, forwardStack, logs);
+
+    System.out.println("\nBrowsing Sequence:");
+    for (String page : browsingHistory) {
+        System.out.println(page);
+    }
+
+    System.out.println("\nLogs:");
+    for (String log : logs) {
+        System.out.println(log);
+    }}
+    static void visit(String page,
+            Stack<String> backStack,
+            Stack<String> forwardStack,
+            LinkedList<String> history,
+            Vector<String> logs) {
+
+      backStack.push(page);
+      forwardStack.clear();
+      history.add(page);
+      logs.add("Visited: " + page);
+     }
+    static void back(Stack<String> backStack,
+            Stack<String> forwardStack,
+            Vector<String> logs) {
+
+     if (backStack.size() > 1) {
+   String current = backStack.pop();
+   forwardStack.push(current);
+
+   logs.add("Back from: " + current);
+   System.out.println("Back to: " + backStack.peek());
+   } else {
+   System.out.println("No previous page");
+   }
+    }
+
+    static void forward(Stack<String> backStack,
+                        Stack<String> forwardStack,
+                        Vector<String> logs) {
+
+        if (!forwardStack.isEmpty()) {
+            String page = forwardStack.pop();
+            backStack.push(page);
+
+            logs.add("Forward to: " + page);
+            System.out.println("Forward to: " + page);
+        } else {
+            System.out.println("No forward page");
+}}}.
+(OUTPUT)=>
+Back to: YouTube
+Forward to: GitHub
+
+Browsing Sequence:
+Google
+YouTube
+GitHub
+
+Logs:
+Visited: Google
+Visited: YouTube
+Visited: GitHub
+Back from: GitHub
+Forward to: GitHub
+
 
