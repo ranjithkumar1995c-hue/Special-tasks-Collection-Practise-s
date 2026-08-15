@@ -193,6 +193,121 @@ Rolled back: Withdraw ₹2000
 
 Transactions after Rollback:
 Deposit ₹5000.
+package SpecialTaskCollectionsPractise;
+import java.util.*;
+//Gametask 3.
+//In a game application, use ArrayList for player scores, Stack for undo moves, and LinkedList for managing player turns dynamically.
+public class Gametask3 {
+public static void main(String[] args) {
+	
+
+	 // ArrayList for player scores
+	        ArrayList<Integer> scores = new ArrayList<>();
+
+	        // Stack for undo moves
+	        Stack<String> undoMoves = new Stack<>();
+
+	        // LinkedList for player turns
+	        LinkedList<String> players = new LinkedList<>();
+
+	        // Add players
+	        players.add("Ranjith");
+	        players.add("Kumar");
+	        players.add("Arun");
+
+	        // Initial scores
+	        scores.add(0);
+	        scores.add(0);
+	        scores.add(0);
+
+	        // Player 1 makes a move
+	        makeMove("Ranjith", 10, scores, undoMoves, 0);
+
+	        // Player 2 makes a move
+	        makeMove("Kumar", 20, scores, undoMoves, 1);
+
+	        // Player 3 makes a move
+	        makeMove("Arun", 15, scores, undoMoves, 2);
+
+	        // Display scores
+	        System.out.println("Player Scores:");
+	        for (int i = 0; i < players.size(); i++) {
+	            System.out.println(
+	                    players.get(i) + " : " + scores.get(i)
+	            );
+	        }
+
+	        // Manage player turns
+	        System.out.println("\nPlayer Turns:");
+
+	        for (int i = 0; i < players.size(); i++) {
+	            String player = players.removeFirst();
+	            System.out.println("Current Turn: " + player);
+
+	            players.addLast(player);
+	        }
+
+	        // Undo last move
+	        System.out.println("\nUndo Last Move:");
+	        undoMove(scores, undoMoves);
+	    }
+
+	    static void makeMove(
+	            String player,
+	            int points,
+	            ArrayList<Integer> scores,
+	            Stack<String> undoMoves,
+	            int playerIndex) {
+
+	        scores.set(
+	                playerIndex,
+	                scores.get(playerIndex) + points
+	        );
+
+	        undoMoves.push(
+	                player + " +" + points
+	        );
+
+	        System.out.println(
+	                player + " scored " + points
+	        );
+	    }
+
+	    static void undoMove(
+	            ArrayList<Integer> scores,
+	            Stack<String> undoMoves) {
+
+	        if (!undoMoves.isEmpty()) {
+
+	            String lastMove = undoMoves.pop();
+
+	            System.out.println(
+	                    "Undo move: " + lastMove
+	            );
+
+	        } else {
+	            System.out.println("No moves to undo.");
+	        }
+	    }
+	}
+(OUTPUT)=>Ranjith scored 10
+Kumar scored 20
+Arun scored 15
+Player Scores:
+Ranjith : 10
+Kumar : 20
+Arun : 15
+
+Player Turns:
+Current Turn: Ranjith
+Current Turn: Kumar
+Current Turn: Arun
+
+Undo Last Move:
+Undo move: Arun +15
+		
+
+	
 		
 
 	
