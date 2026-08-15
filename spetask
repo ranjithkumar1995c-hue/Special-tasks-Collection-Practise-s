@@ -92,5 +92,111 @@ Visited: YouTube
 Visited: GitHub
 Back from: GitHub
 Forward to: GitHub
+package SpecialTaskCollectionsPractise;
+import java.util.*;
+//Task No:2.
+//In a banking system, use Vector to store transactions safely, ArrayList for account details, and Stack to rollback last transaction if error occurs.
+public class BankingTask2 {
+public static void main(String[] args) {
+
+ // ArrayList to store account details
+	  ArrayList<String> accounts = new ArrayList<>();
+
+	        // Vector to store transactions safely
+	        Vector<String> transactions = new Vector<>();
+
+	        // Stack to store transactions for rollback
+	        Stack<String> rollbackStack = new Stack<>();
+
+	        // Add account details
+	        accounts.add("Account: 1001 - Ranjith");
+	        accounts.add("Account: 1002 - Kumar");
+
+	        // Perform transactions
+	        performTransaction(
+	                "Deposit ₹5000",
+	                transactions,
+	                rollbackStack
+	        );
+
+	        performTransaction(
+	                "Withdraw ₹2000",
+	                transactions,
+	                rollbackStack
+	        );
+
+	        // Display accounts
+	        System.out.println("Account Details:");
+	        for (String account : accounts) {
+	            System.out.println(account);
+	        }
+
+	        // Display transactions
+	        System.out.println("\nTransactions:");
+	        for (String transaction : transactions) {
+	            System.out.println(transaction);
+	        }
+
+	        // Rollback last transaction
+	        System.out.println("\nRolling back last transaction...");
+	        rollback(transactions, rollbackStack);
+
+	        // Display transactions after rollback
+	        System.out.println("\nTransactions after Rollback:");
+	        for (String transaction : transactions) {
+	            System.out.println(transaction);
+	        }
+	    }
+
+	    static void performTransaction(
+	            String transaction,
+	            Vector<String> transactions,
+	            Stack<String> rollbackStack) {
+
+	        transactions.add(transaction);
+	        rollbackStack.push(transaction);
+
+	        System.out.println("Transaction completed: " + transaction);
+	    }
+
+	    static void rollback(
+	            Vector<String> transactions,
+	            Stack<String> rollbackStack) {
+
+	        if (!rollbackStack.isEmpty()) {
+
+	            String lastTransaction = rollbackStack.pop();
+
+	            transactions.remove(lastTransaction);
+
+	            System.out.println(
+	                    "Rolled back: " + lastTransaction
+	            );
+
+	        } else {
+	            System.out.println("No transaction to rollback.");
+	        }
+	    }
+	}
+(OUTPUT)=>Transaction completed: Deposit ₹5000
+Transaction completed: Withdraw ₹2000
+Account Details:
+Account: 1001 - Ranjith
+Account: 1002 - Kumar
+
+Transactions:
+Deposit ₹5000
+Withdraw ₹2000
+
+Rolling back last transaction...
+Rolled back: Withdraw ₹2000
+
+Transactions after Rollback:
+Deposit ₹5000.
+		
+
+	
+
+
 
 
