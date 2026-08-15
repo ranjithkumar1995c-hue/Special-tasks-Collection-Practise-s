@@ -304,7 +304,80 @@ Current Turn: Kumar
 Current Turn: Arun
 
 Undo Last Move:
-Undo move: Arun +15
+Undo move: Arun +15.
+
+package SpecialTaskCollectionsPractise;
+import java.util.*;
+public class HosiptaltTask4 {
+public static void main(String[] args) {
+	
+
+	
+
+		        // LinkedList for patient queue
+		        LinkedList<String> patientQueue = new LinkedList<>();
+
+		        // ArrayList for patient records
+		        ArrayList<String> patientRecords = new ArrayList<>();
+
+		        // Vector for thread-safe emergency logs
+		        Vector<String> emergencyLogs = new Vector<>();
+
+		        // Add patients to queue
+		        patientQueue.add("Ranjith");
+		        patientQueue.add("Kumar");
+		        patientQueue.add("Arun");
+
+		        // Add patient records
+		        patientRecords.add("Ranjith - Age 25 - Fever");
+		        patientRecords.add("Kumar - Age 30 - Headache");
+		        patientRecords.add("Arun - Age 40 - Chest Pain");
+
+		        // Add emergency logs
+		        emergencyLogs.add("Emergency: Arun - Chest Pain");
+		        emergencyLogs.add("Doctor assigned to Arun");
+		        emergencyLogs.add("Emergency treatment started");
+
+		        // Display patient queue
+		        System.out.println("Patient Queue:");
+
+		        while (!patientQueue.isEmpty()) {
+		            String patient = patientQueue.removeFirst();
+		            System.out.println("Treating: " + patient);
+		        }
+
+		        // Display patient records
+		        System.out.println("\nPatient Records:");
+
+		        for (String record : patientRecords) {
+		            System.out.println(record);
+		        }
+
+		        // Display emergency logs
+		        System.out.println("\nEmergency Logs:");
+
+		        for (String log : emergencyLogs) {
+		            System.out.println(log);
+		        }
+		    }
+		}
+(OUTPUT)=>Patient Queue:
+Treating: Ranjith
+Treating: Kumar
+Treating: Arun
+
+Patient Records:
+Ranjith - Age 25 - Fever
+Kumar - Age 30 - Headache
+Arun - Age 40 - Chest Pain
+
+Emergency Logs:
+Emergency: Arun - Chest Pain
+Doctor assigned to Arun
+Emergency treatment started.
+
+	
+
 		
 
 	
