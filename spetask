@@ -375,6 +375,134 @@ Emergency Logs:
 Emergency: Arun - Chest Pain
 Doctor assigned to Arun
 Emergency treatment started.
+package SpecialTaskCollectionsPractise;
+//Task No;5
+import java.util.*;
+//In a ticket booking system, use Vector for booking records, ArrayList for available seats, and Stack to cancel last booking.
+public class TicketBookingTask5 {
+public static void main(String[] args) {
+		
+
+	
+
+		        // Vector for booking records
+		        Vector<String> bookings = new Vector<>();
+
+		        // ArrayList for available seats
+		        ArrayList<Integer> availableSeats = new ArrayList<>();
+
+		        // Stack for last bookings
+		        Stack<String> bookingStack = new Stack<>();
+
+		        // Add available seats
+		        availableSeats.add(1);
+		        availableSeats.add(2);
+		        availableSeats.add(3);
+		        availableSeats.add(4);
+		        availableSeats.add(5);
+
+		        // Book tickets
+		        bookTicket("Ranjith", availableSeats, bookings, bookingStack);
+		        bookTicket("Kumar", availableSeats, bookings, bookingStack);
+		        bookTicket("Arun", availableSeats, bookings, bookingStack);
+
+		        // Display bookings
+		        System.out.println("\nBooking Records:");
+		        for (String booking : bookings) {
+		            System.out.println(booking);
+		        }
+
+		        // Display available seats
+		        System.out.println("\nAvailable Seats:");
+		        System.out.println(availableSeats);
+
+		        // Cancel last booking
+		        System.out.println("\nCancelling Last Booking:");
+		        cancelLastBooking(availableSeats, bookings, bookingStack);
+
+		        // Display records after cancellation
+		        System.out.println("\nBooking Records After Cancellation:");
+		        for (String booking : bookings) {
+		            System.out.println(booking);
+		        }
+
+		        System.out.println("\nAvailable Seats:");
+		        System.out.println(availableSeats);
+		    }
+
+		    static void bookTicket(
+		            String name,
+		            ArrayList<Integer> availableSeats,
+		            Vector<String> bookings,
+		            Stack<String> bookingStack) {
+
+		        if (!availableSeats.isEmpty()) {
+
+		            int seat = availableSeats.remove(0);
+
+		            String booking = name + " - Seat " + seat;
+
+		            bookings.add(booking);
+		            bookingStack.push(booking);
+
+		            System.out.println("Booked: " + booking);
+
+		        } else {
+		            System.out.println("No seats available.");
+		        }
+		    }
+
+		    static void cancelLastBooking(
+		            ArrayList<Integer> availableSeats,
+		            Vector<String> bookings,
+		            Stack<String> bookingStack) {
+
+		        if (!bookingStack.isEmpty()) {
+
+		            String lastBooking = bookingStack.pop();
+
+		            bookings.remove(lastBooking);
+
+		            // Extract seat number
+		            int seat = Integer.parseInt(
+		                    lastBooking.substring(
+		                            lastBooking.lastIndexOf(" ") + 1
+		                    )
+		            );
+
+		            availableSeats.add(seat);
+
+		            System.out.println("Cancelled: " + lastBooking);
+
+		        } else {
+		            System.out.println("No booking to cancel.");
+		        }
+		    }
+		}
+(OUTPUT)=>Booked: Ranjith - Seat 1
+Booked: Kumar - Seat 2
+Booked: Arun - Seat 3
+
+Booking Records:
+Ranjith - Seat 1
+Kumar - Seat 2
+Arun - Seat 3
+
+Available Seats:
+[4, 5]
+
+Cancelling Last Booking:
+Cancelled: Arun - Seat 3
+
+Booking Records After Cancellation:
+Ranjith - Seat 1
+Kumar - Seat 2
+
+Available Seats:
+[4, 5, 3].
+		
+
+	
 
 	
 
